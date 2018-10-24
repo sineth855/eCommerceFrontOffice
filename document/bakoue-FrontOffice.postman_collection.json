@@ -1,0 +1,870 @@
+{
+	"info": {
+		"_postman_id": "1b249592-fbe6-f8b0-e41a-47d2c87019a0",
+		"name": "BBBKKK-FrontOffice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"admin@admin.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\":\"sineth\",\n  \"last_name\":\"sim\",\n  \"email\":\"muylssssyss@gmail.com\",\n  \"password\":\"123456\",\n  \"confirm_password\":\"123456\",\n  \"deviceId\":\"12222\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/account/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http:localhost:3000/api/account/register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "DeviceID",
+										"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\":\"sineth\",\n  \"last_name\":\"sim\",\n  \"email\":\"muyly@gmail.com\",\n  \"password\":\"123456\",\n  \"confirm_password\":\"123456\",\n  \"deviceId\":\"18:00\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/account/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "unknown status",
+							"code": 419,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": ""
+								},
+								{
+									"key": "Connection",
+									"value": "close",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 23:48:35 +0700",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "Host",
+									"value": "localhost:3000",
+									"name": "Host",
+									"description": ""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=eyJpdiI6ImxueUJVWEdFNEtvcGxKUkptWVwvaWp3PT0iLCJ2YWx1ZSI6IkpGdUJXQm82YmdZMkMwRzRwNVhZdFR5MnRXSGF1eUgrcjZnRk4ra0RTcFpHK284ZnR3MmcyNjNiSzB2dmJSZ1hkdGdvUUxtQWt1aTZpOXZ2RlhXRUZBPT0iLCJtYWMiOiIwMmQ0OGE0YTAyNTg1YzJhYmYxMmFmYWRjZmUwYmIxNjc3YTRhM2RmZjcxMGI3OWQ0NWEzYjk1NmMwYWIxODhkIn0%3D; expires=Sun, 25-Feb-2018 18:48:35 GMT; Max-Age=7200; path=/; HttpOnly",
+									"name": "Set-Cookie",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.1.9",
+									"name": "X-Powered-By",
+									"description": ""
+								},
+								{
+									"key": "date",
+									"value": "Sun, 25 Feb 2018 16:48:35 GMT",
+									"name": "date",
+									"description": ""
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Wed Feb 20 2019 20:37:50 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "English",
+									"key": "Language"
+								},
+								{
+									"expires": "Mon Feb 26 2018 01:48:35 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "eyJpdiI6ImxueUJVWEdFNEtvcGxKUkptWVwvaWp3PT0iLCJ2YWx1ZSI6IkpGdUJXQm82YmdZMkMwRzRwNVhZdFR5MnRXSGF1eUgrcjZnRk4ra0RTcFpHK284ZnR3MmcyNjNiSzB2dmJSZ1hkdGdvUUxtQWt1aTZpOXZ2RlhXRUZBPT0iLCJtYWMiOiIwMmQ0OGE0YTAyNTg1YzJhYmYxMmFmYWRjZmUwYmIxNjc3YTRhM2RmZjcxMGI3OWQ0NWEzYjk1NmMwYWIxODhkIn0%3D",
+									"key": "laravel_session"
+								},
+								{
+									"expires": "Mon Feb 26 2018 01:23:20 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "eyJpdiI6IkFjeUdrRE5MTEFIaG9PSVlicXN3eFE9PSIsInZhbHVlIjoia0J5c3dcL0ZTNFwvcHpnYm9IVnBMNXd0OUU0ZkhDOUxcL2dSZXl4SjZQSXlRYTZOOU40dWk1RG9qXC84cFZQbThheHhZejJzazQrenFvRXVteHorQWp1c0ZBPT0iLCJtYWMiOiIwZTQ2N2Q0NjAxZTY5NjljYzQwM2Q5NTAzMWNiYmFiZjUxNjRkNjIxNTU1ZmFkYzVjMzdmYjFmY2E3ZGE1MDk5In0%3D",
+									"key": "XSRF-TOKEN"
+								}
+							],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <title>Page Expired</title>\n\n        <!-- Fonts -->\n        <link href=\"https://fonts.googleapis.com/css?family=Raleway:100,600\" rel=\"stylesheet\" type=\"text/css\">\n\n        <!-- Styles -->\n        <style>\n            html, body {\n                background-color: #fff;\n                color: #636b6f;\n                font-family: 'Raleway', sans-serif;\n                font-weight: 100;\n                height: 100vh;\n                margin: 0;\n            }\n\n            .full-height {\n                height: 100vh;\n            }\n\n            .flex-center {\n                align-items: center;\n                display: flex;\n                justify-content: center;\n            }\n\n            .position-ref {\n                position: relative;\n            }\n\n            .content {\n                text-align: center;\n            }\n\n            .title {\n                font-size: 36px;\n                padding: 20px;\n            }\n        </style>\n    </head>\n    <body>\n        <div class=\"flex-center position-ref full-height\">\n            <div class=\"content\">\n                <div class=\"title\">\n                        The page has expired due to inactivity.\n    <br/><br/>\n    Please refresh and try again.\n                </div>\n            </div>\n        </div>\n    </body>\n</html>\n"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create Product Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"product_id\":\"sineth\",\n  \"customer_id\":\"sim\",\n  \"author\":\"muylssy@gmail.com\",\n  \"text\":\"123456\",\n  \"rating\":\"123456\",\n  \"date_added\":\"2017-02-02\",\n  \"date_modified\":\"2017-02-02\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/product_review",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"product_review"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http:localhost:3000/api/account/register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "DeviceID",
+										"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\":\"sineth\",\n  \"last_name\":\"sim\",\n  \"email\":\"muyly@gmail.com\",\n  \"password\":\"123456\",\n  \"confirm_password\":\"123456\",\n  \"deviceId\":\"18:00\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/account/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "unknown status",
+							"code": 419,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "close",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 23:48:35 +0700",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Host",
+									"value": "localhost:3000",
+									"name": "Host",
+									"description": "Custom header"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=eyJpdiI6ImxueUJVWEdFNEtvcGxKUkptWVwvaWp3PT0iLCJ2YWx1ZSI6IkpGdUJXQm82YmdZMkMwRzRwNVhZdFR5MnRXSGF1eUgrcjZnRk4ra0RTcFpHK284ZnR3MmcyNjNiSzB2dmJSZ1hkdGdvUUxtQWt1aTZpOXZ2RlhXRUZBPT0iLCJtYWMiOiIwMmQ0OGE0YTAyNTg1YzJhYmYxMmFmYWRjZmUwYmIxNjc3YTRhM2RmZjcxMGI3OWQ0NWEzYjk1NmMwYWIxODhkIn0%3D; expires=Sun, 25-Feb-2018 18:48:35 GMT; Max-Age=7200; path=/; HttpOnly",
+									"name": "Set-Cookie",
+									"description": "an HTTP cookie"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.1.9",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "date",
+									"value": "Sun, 25 Feb 2018 16:48:35 GMT",
+									"name": "date",
+									"description": "The date and time that the message was sent"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Wed Feb 20 2019 20:37:50 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "English",
+									"key": "Language"
+								},
+								{
+									"expires": "Mon Feb 26 2018 01:48:35 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "eyJpdiI6ImxueUJVWEdFNEtvcGxKUkptWVwvaWp3PT0iLCJ2YWx1ZSI6IkpGdUJXQm82YmdZMkMwRzRwNVhZdFR5MnRXSGF1eUgrcjZnRk4ra0RTcFpHK284ZnR3MmcyNjNiSzB2dmJSZ1hkdGdvUUxtQWt1aTZpOXZ2RlhXRUZBPT0iLCJtYWMiOiIwMmQ0OGE0YTAyNTg1YzJhYmYxMmFmYWRjZmUwYmIxNjc3YTRhM2RmZjcxMGI3OWQ0NWEzYjk1NmMwYWIxODhkIn0%3D",
+									"key": "laravel_session"
+								},
+								{
+									"expires": "Mon Feb 26 2018 01:23:20 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "eyJpdiI6IkFjeUdrRE5MTEFIaG9PSVlicXN3eFE9PSIsInZhbHVlIjoia0J5c3dcL0ZTNFwvcHpnYm9IVnBMNXd0OUU0ZkhDOUxcL2dSZXl4SjZQSXlRYTZOOU40dWk1RG9qXC84cFZQbThheHhZejJzazQrenFvRXVteHorQWp1c0ZBPT0iLCJtYWMiOiIwZTQ2N2Q0NjAxZTY5NjljYzQwM2Q5NTAzMWNiYmFiZjUxNjRkNjIxNTU1ZmFkYzVjMzdmYjFmY2E3ZGE1MDk5In0%3D",
+									"key": "XSRF-TOKEN"
+								}
+							],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <title>Page Expired</title>\n\n        <!-- Fonts -->\n        <link href=\"https://fonts.googleapis.com/css?family=Raleway:100,600\" rel=\"stylesheet\" type=\"text/css\">\n\n        <!-- Styles -->\n        <style>\n            html, body {\n                background-color: #fff;\n                color: #636b6f;\n                font-family: 'Raleway', sans-serif;\n                font-weight: 100;\n                height: 100vh;\n                margin: 0;\n            }\n\n            .full-height {\n                height: 100vh;\n            }\n\n            .flex-center {\n                align-items: center;\n                display: flex;\n                justify-content: center;\n            }\n\n            .position-ref {\n                position: relative;\n            }\n\n            .content {\n                text-align: center;\n            }\n\n            .title {\n                font-size: 36px;\n                padding: 20px;\n            }\n        </style>\n    </head>\n    <body>\n        <div class=\"flex-center position-ref full-height\">\n            <div class=\"content\">\n                <div class=\"title\">\n                        The page has expired due to inactivity.\n    <br/><br/>\n    Please refresh and try again.\n                </div>\n            </div>\n        </div>\n    </body>\n</html>\n"
+						}
+					]
+				},
+				{
+					"name": "Get Product Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"sineth@gmail.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/product_detail/28/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"product_detail",
+								"28",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Latest Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"sineth@gmail.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/latest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"latest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Best Seller Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"sineth@gmail.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/bestSeller",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"bestSeller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recommanded Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/recommandProduct",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recommandProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Store",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/store/getStoreData?store_id=1&filter_name='name-asc'",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"store",
+								"getStoreData"
+							],
+							"query": [
+								{
+									"key": "store_id",
+									"value": "1"
+								},
+								{
+									"key": "filter_name",
+									"value": "'name-asc'"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get All Address belong to Customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjA2YWRjZTcxNDlhOWRiMmFlMmM4MzIzMThhYzZmNDg1ZDMyNDFhZDI2Y2I3ZjNmMTg0NGJlNjExMjFlYjRmNzE1YjM4YTRlNWUyZGI0MGM1In0.eyJhdWQiOiIxIiwianRpIjoiMDZhZGNlNzE0OWE5ZGIyYWUyYzgzMjMxOGFjNmY0ODVkMzI0MWFkMjZjYjdmM2YxODQ0YmU2MTEyMWViNGY3MTViMzhhNGU1ZTJkYjQwYzUiLCJpYXQiOjE1MTk1NzMyMDksIm5iZiI6MTUxOTU3MzIwOSwiZXhwIjoxNTUxMTA5MjA5LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.BcwtcjZmj0G-IyxOZ88QlSciJOgRAvK-4ancxtzNrEaU8LU2UiIfNf9Wj1QQzRMfZ4yu1OV0tPnZ3qmt2orpB4IsAjMXjhLgpALTKYofsym9esGUGdbNvY-KK1XUZ8di3U8uml-iGXOX4Tzc2mm83eDcHES69ogJLuhIv8o6sN7BEGb2yLCNRFyPxfr9TOmQNUxmNEbVEsswa36CC_MSzcLXla4pXMWjdj4i6vBtekXmgN91Pu2rOt5h2pGMaTXeKXQuV1c368U6cQbqZ3XBh0HFBzHxdF41f4OmmOIxqk3qTNLVnjz7nHZijfrt6eso7gnrEzqHweMddkNKg9-QyqvxYjFFJ0GfUKgapBbHNOELZ6ndtZoCQuaYGzSUvMz-XBXLy240PoAwJpmQ8uAYCrbHW3UzOidF-RotJMpxk44AsZ35ZUNIcSjGI1TRs_6pLp13yx3kwpoFqqGEp4fEh553rMJEWgeEwvEa5CgzTan2RrY1ACNw6v0DMug5r9Q71ui0Xtjl_HGtVJTHdpwKIROa9zIKsHw3K1c2BHwTvA9N0sMaN3S8gEBVchfehm3wIyyHbjyBMPuW926Mo0I5SEJaPbUZ6bQoqtTpNfWaKbSmQlCsTpgMRC9wcu80JhlbsvUhv7yyaue5FRz0KmeOReqtwRIadPn78tReKHYSsbg"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"sineth@gmail.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/address",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjllMTE1ZjE3NzQ0YzZjZDhkMTBlMjdmMTRhNDI1MzU2YTM4ODg5NjhlMGJiNTY1MzNmMTU3YTAxZmIxYWEyZmU1ZmRkMmY2MDM4YTcwNTRlIn0.eyJhdWQiOiIxIiwianRpIjoiOWUxMTVmMTc3NDRjNmNkOGQxMGUyN2YxNGE0MjUzNTZhMzg4ODk2OGUwYmI1NjUzM2YxNTdhMDFmYjFhYTJmZTVmZGQyZjYwMzhhNzA1NGUiLCJpYXQiOjE1Mjc2MDI2MjcsIm5iZiI6MTUyNzYwMjYyNywiZXhwIjoxNTU5MTM4NjI3LCJzdWIiOiIyMzEiLCJzY29wZXMiOltdfQ.ncjiIF896g_B9Y0r9soQYfbtQGM74goAmR8uc2HMOpv_1o7sKq84PFh0iP2y-nSVdlarSihu4IMb37iWJtWBCyWw7sOp7riKxYg5fUCm_uaToJ8VJgen3e8ZHM7PTIQBBmECvnVTe02RjJToWEGyb-0ofw9jWBNgg2QvtzzXVcnmfPV6fbgo0Tp9R_W_SqSQjuEMwyhFCB2L5pd9471clkGV4ysFaG29Fl5-1X6JdsfQUjCKMPSlN-OXoQIjd0zwMkrVv2EnwDpnTbjXoEsYj1oD8NZnISn7rCfqesp61nYIdDlYnJxQ6J2PM0PHd62oFJ2QlOt5Z7quWSrBJVvKQYSRyAQJtZwXLegV7Ex5vEpB1YPgg3-aeer8jSn1BwIt8i2MB4cbFJ4QOUc-dvu1GsGSoG-Gc01xqlJYOYOpzRcrHdmSB5DGplfmIoaYxxYubnRBTHZYtDc3SR899xqIBBKBPXkImfWONGwcxtsHQzoMtOX_w4R8-KGO3_VE27TLPQ-zRQrRCH6fUsNRGtOwnuDnmJ4whwUTOiFPVkuDzbJitF52iH3GfairKAtoQ9kSPBEr_3-TvjqdxGQyO9_lrADnNwUXBL7rT1S2ktcg-INy1PFe5jRvZU8Zk930OD-Fc6o4N-bCT4_qJZ-_378_tcL9VJbh55hydGQIuzQy_Io"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/customer_info",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer_info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reseller",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\":\"sineth\",\n  \"last_name\":\"sim\",\n  \"email\":\"muylssssyss@gmail.com\",\n  \"password\":\"123456\",\n  \"confirm_password\":\"123456\",\n  \"deviceId\":\"12222\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/account/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http:localhost:3000/api/account/register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "DeviceID",
+										"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\":\"sineth\",\n  \"last_name\":\"sim\",\n  \"email\":\"muyly@gmail.com\",\n  \"password\":\"123456\",\n  \"confirm_password\":\"123456\",\n  \"deviceId\":\"18:00\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/account/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "unknown status",
+							"code": 419,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": ""
+								},
+								{
+									"key": "Connection",
+									"value": "close",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 23:48:35 +0700",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "Host",
+									"value": "localhost:3000",
+									"name": "Host",
+									"description": ""
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel_session=eyJpdiI6ImxueUJVWEdFNEtvcGxKUkptWVwvaWp3PT0iLCJ2YWx1ZSI6IkpGdUJXQm82YmdZMkMwRzRwNVhZdFR5MnRXSGF1eUgrcjZnRk4ra0RTcFpHK284ZnR3MmcyNjNiSzB2dmJSZ1hkdGdvUUxtQWt1aTZpOXZ2RlhXRUZBPT0iLCJtYWMiOiIwMmQ0OGE0YTAyNTg1YzJhYmYxMmFmYWRjZmUwYmIxNjc3YTRhM2RmZjcxMGI3OWQ0NWEzYjk1NmMwYWIxODhkIn0%3D; expires=Sun, 25-Feb-2018 18:48:35 GMT; Max-Age=7200; path=/; HttpOnly",
+									"name": "Set-Cookie",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.1.9",
+									"name": "X-Powered-By",
+									"description": ""
+								},
+								{
+									"key": "date",
+									"value": "Sun, 25 Feb 2018 16:48:35 GMT",
+									"name": "date",
+									"description": ""
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Wed Feb 20 2019 20:37:50 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "English",
+									"key": "Language"
+								},
+								{
+									"expires": "Mon Feb 26 2018 01:48:35 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "eyJpdiI6ImxueUJVWEdFNEtvcGxKUkptWVwvaWp3PT0iLCJ2YWx1ZSI6IkpGdUJXQm82YmdZMkMwRzRwNVhZdFR5MnRXSGF1eUgrcjZnRk4ra0RTcFpHK284ZnR3MmcyNjNiSzB2dmJSZ1hkdGdvUUxtQWt1aTZpOXZ2RlhXRUZBPT0iLCJtYWMiOiIwMmQ0OGE0YTAyNTg1YzJhYmYxMmFmYWRjZmUwYmIxNjc3YTRhM2RmZjcxMGI3OWQ0NWEzYjk1NmMwYWIxODhkIn0%3D",
+									"key": "laravel_session"
+								},
+								{
+									"expires": "Mon Feb 26 2018 01:23:20 GMT+0700 (SE Asia Standard Time)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "eyJpdiI6IkFjeUdrRE5MTEFIaG9PSVlicXN3eFE9PSIsInZhbHVlIjoia0J5c3dcL0ZTNFwvcHpnYm9IVnBMNXd0OUU0ZkhDOUxcL2dSZXl4SjZQSXlRYTZOOU40dWk1RG9qXC84cFZQbThheHhZejJzazQrenFvRXVteHorQWp1c0ZBPT0iLCJtYWMiOiIwZTQ2N2Q0NjAxZTY5NjljYzQwM2Q5NTAzMWNiYmFiZjUxNjRkNjIxNTU1ZmFkYzVjMzdmYjFmY2E3ZGE1MDk5In0%3D",
+									"key": "XSRF-TOKEN"
+								}
+							],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        <title>Page Expired</title>\n\n        <!-- Fonts -->\n        <link href=\"https://fonts.googleapis.com/css?family=Raleway:100,600\" rel=\"stylesheet\" type=\"text/css\">\n\n        <!-- Styles -->\n        <style>\n            html, body {\n                background-color: #fff;\n                color: #636b6f;\n                font-family: 'Raleway', sans-serif;\n                font-weight: 100;\n                height: 100vh;\n                margin: 0;\n            }\n\n            .full-height {\n                height: 100vh;\n            }\n\n            .flex-center {\n                align-items: center;\n                display: flex;\n                justify-content: center;\n            }\n\n            .position-ref {\n                position: relative;\n            }\n\n            .content {\n                text-align: center;\n            }\n\n            .title {\n                font-size: 36px;\n                padding: 20px;\n            }\n        </style>\n    </head>\n    <body>\n        <div class=\"flex-center position-ref full-height\">\n            <div class=\"content\">\n                <div class=\"title\">\n                        The page has expired due to inactivity.\n    <br/><br/>\n    Please refresh and try again.\n                </div>\n            </div>\n        </div>\n    </body>\n</html>\n"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Include Layout",
+			"item": [
+				{
+					"name": "Footer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/footer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"footer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Information",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"sineth@gmail.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/informations?lang=en",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"informations"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Design",
+			"item": [
+				{
+					"name": "Get All Banner",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "DeviceID",
+								"value": "DLUyc4VN5gdK2M4Hf5ZlH7dmEoO2DcowALRhzTrf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"sineth@gmail.com\",\n  \"password\":\"cambodia\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/slide?lang=en",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"slide"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a0505c4f-2ade-40c8-8127-7e2d044722fd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4aab74d5-c4f0-4de3-9e39-676f7001e844",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
