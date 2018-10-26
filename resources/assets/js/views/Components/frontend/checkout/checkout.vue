@@ -44,15 +44,13 @@
 		                    </div>
 		                    <!-- form tabs -->
 		                    <div class="w100 clearfix">
-		                        <div class="row userInfo" v-for="i in tabs.length" v-show="activeTab==i-1">
-		                            <div class="col-lg-12" >
-		                                <h2 class="block-title-2"> 
-		                                	{{tabs[activeTab].description}}
-		                                </h2>
-		                            </div>
-		          
-
-		                        </div>
+								<div class="row userInfo" v-for="i in tabs.length" v-show="activeTab==i-1">
+									<div class="col-lg-12" >
+										<h2 class="block-title-2"> 
+											{{tabs[activeTab].description}}
+										</h2>
+									</div>
+								</div>
 		                        <!--/row end-->
 		                    </div>
 		                    <!-- end form -->
@@ -300,18 +298,18 @@
 										</a>
 		                            </div>
 		                            <div class="pull-right">
-		                                	<span v-if="activeTab + 1 > tabs.length-1">
-		                                		<a class="btn btn-primary btn-small" @click="Submit()">
-				                                    &nbsp; Confirm Order
-				                                    <i class="fa fa-arrow-circle-right"></i> 
-		                                		</a>
-		                                	</span>
-		                                	<span v-else>
-			                                	<a class="btn btn-primary btn-small" @click="activeTab=activeTab+1">
-				                                    &nbsp; {{tabs[activeTab+1].button}}
-				                                	<i class="fa fa-arrow-circle-right"></i> 
-			                             		</a>
-		                                	</span>
+										<span v-if="activeTab + 1 > tabs.length-1">
+											<a class="btn btn-primary btn-small" @click="Submit()">
+												&nbsp; Confirm Order
+												<i class="fa fa-arrow-circle-right"></i> 
+											</a>
+										</span>
+										<span v-else>
+											<a class="btn btn-primary btn-small" @click="activeTab=activeTab+1">
+												&nbsp; {{tabs[activeTab+1].button}}
+												<i class="fa fa-arrow-circle-right"></i> 
+											</a>
+										</span>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -487,7 +485,7 @@ export default {
 				{
 					name:'BILLING', 
 					description:'To add a billing address, please fill out the form below.',
-					button:'Billing address',
+					button:'CONTINUE',
 					class:'',
 					iconDisplay:'fa fa-envelope',
 					group:[{
@@ -518,7 +516,7 @@ export default {
 				{
 					name:'SHIPPING', 
 					description:'Choose your delivery method',
-					button:'Shipping address',
+					button:'Back to Billing',
 					class:'',
 					iconDisplay:'fa fa-truck',
 					
@@ -526,11 +524,11 @@ export default {
 				{
 					name:'PAYMENT', 
 					description:'Payment method',
-					button:'Payment Method',
+					button:'CONTINUE',
 					iconDisplay:'fa fa-money',
 				},
 				{
-					name:'ORDER', 
+					name:'CONFIRM ORDER', 
 					description:'Review Order',
 					button:'Order',
 					class:'',

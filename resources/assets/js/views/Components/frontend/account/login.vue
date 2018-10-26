@@ -24,7 +24,6 @@
                 <template>
                     <div v-if="flash.success" class="alert alert-success"><i class="fa fa-wa fa-check"></i> {{flash.success}}</div>
                 </template>
-                <div class="alert alert-success"><i class="fa fa-wa fa-check"></i> asdf</div>
                 &nbsp;
                 <v-form>
                     <input type="hidden" v-model="credential.is_account" value="1">

@@ -6,8 +6,8 @@
 
 		      <div class="container">
 		          <div class="row xsResponse equalHeightCategoryProduct">
-		          	<!-- <pre>{{productRecommandeds|json}}</pre> -->
-		          	<template v-for="productRecommanded of productRecommandeds">
+		          	<!-- <pre>{{products|json}}</pre> -->
+		          	<template v-for="product of products">
 			              <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
 			                  <div class="product">
 			                      <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
@@ -17,47 +17,47 @@
 
 			                      <div class="image">
 		                          <div class="quickview">
-		                            <a data-toggle="modal" class="btn btn-xs btn-quickview" :data-target="ModalQuickView(productRecommanded.product_id)">
+		                            <a data-toggle="modal" class="btn btn-xs btn-quickview" :data-target="ModalQuickView(product.product_id)">
 		                            	Quick View 
 		                            </a>
 		                          </div>
-		                          <router-link v-bind:to="productRecommanded.href">
-		                          	 <img v-bind:src="productRecommanded.thumb" alt="img" class="img-responsive">
+		                          <router-link v-bind:to="product.href">
+		                          	 <img v-bind:src="product.thumb" alt="img" class="img-responsive">
 								  	</router-link>
-		                          <template v-if="productRecommanded.special != null">
+		                          <template v-if="product.special != null">
 									<div class="promotion"><span class="discount"> PROMOTION</span></div>
 								  </template>
 		                      </div>
 		                      <div class="description">
 		                          <h4>
-		                          	<router-link v-bind:to="productRecommanded.href">
-		                          		{{productRecommanded.name}}
+		                          	<router-link v-bind:to="product.href">
+		                          		{{product.name}}
 									</router-link>
 		                          </h4>
 
-		                          <p v-html="productRecommanded.description">.</p>
+		                          <p v-html="product.description">.</p>
 		                          <!--<span class="size">XL / XXL / S </span>-->
 								  <br/>
 								</div>
 
 		                        <div class="price">
-									<template v-if="productRecommanded.special == null">
+									<template v-if="product.special == null">
 										<span class="price-sales">
-											${{productRecommanded.price}}
+											${{product.price}}
 										</span>
 									</template>
 									<template v-else>
 										<span class="price-sales">
-											${{productRecommanded.special}}
+											${{product.special}}
 										</span> 
 										<span class="price-standard">
-											${{productRecommanded.price}}
+											${{product.price}}
 										</span>
 									</template>
 								</div>
 
 			                      <div class="action-control">
-			                      	<a class="btn btn-primary" @click="AddToCart(productRecommanded.product_id)"> 
+			                      	<a class="btn btn-primary" @click="AddToCart(product.product_id)"> 
 			                          <span class="add2cart">
 			                            <i class="glyphicon glyphicon-shopping-cart"> </i> 
 			                            Add to cart 
@@ -66,7 +66,7 @@
 			                      </div>
 			                  </div>
 			              </div>
-						  	<productQuickView v-bind:productId="productRecommanded.product_id"/>
+						  <productQuickView v-bind:productId="product.product_id"/>
 						</template>
 		          </div>
 		          <!-- /.row -->
@@ -107,7 +107,7 @@
                 flash: Flash.state,
                 error: Flash.state,
                 error: {},
-                productRecommandeds: [],
+                products: [],
                 productInfo:[],
                 isProcessing: false,
                 session_id : this.$cookie.get('session_id')
@@ -116,7 +116,7 @@
         created() {
       		axios.get(`/api/recommandProduct`)
           .then(response => {
-            this.productRecommandeds = response.data['data']
+            this.products = response.data['data']
             this.isActive = !this.isActive
           })
           .catch(e => {
