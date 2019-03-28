@@ -29,22 +29,22 @@
                                 </li>
                                 <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
                                     <div class="thumbnail">
-                                        <router-link v-bind:to="'/account/addressmy'" title="My addresses">
-                                             <i class="fa fa-map-marker"></i> My addresses
+                                        <router-link v-bind:to="'/account/my_address'" title="My addresses">
+                                             <i class="fa fa-map-marker"></i> My Address
                                         </router-link>
                                        
                                     </div>
                                 </li>
-                                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                <!--<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
                                     <div class="thumbnail">
                                         <router-link v-bind:to="'/account/addressadd'" title="Add address">
                                             <i class="fa fa-edit"> </i> Add address
                                         </router-link>
                                     </div>
-                                </li>
+                                </li>-->
                                 <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
                                     <div class="thumbnail">
-                                        <router-link v-bind:to="'/account/informationuser'" title="Add address">
+                                        <router-link v-bind:to="'/account/profile'" title="Add address">
                                             <i class="fa fa-cog"></i>My Personal
                                         </router-link>
                                     </div>

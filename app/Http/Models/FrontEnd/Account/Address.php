@@ -4,7 +4,7 @@ namespace App\Http\Models\FrontEnd\Account;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Models\FrontEnd\Account\Address;
-use App\Http\Models\BackEnd\Customer\Customer;
+use App\Http\Models\FrontEnd\Customer;
 
 class Address extends Model
 {

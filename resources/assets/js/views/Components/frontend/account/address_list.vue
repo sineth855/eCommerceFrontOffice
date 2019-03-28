@@ -186,9 +186,9 @@
                         <!--/.w100-->
 
                         <div class="col-lg-12 clearfix">
-                            <a class="btn   btn-primary" href="">
+                            <router-link class="btn btn-primary" v-bind:to="'/account/addressadd'">
                                 <i class="fa fa-plus-circle"></i> Add New Address 
-                            </a>
+                            </router-link>
                         </div>
 
                         <div class="col-lg-12 clearfix">
@@ -199,7 +199,7 @@
                                     </router-link>
                                 </li>
                                 <li class="next pull-left">
-                                    <a href="">&larr; Back to My Account</a>
+                                    <router-link v-bind:to="'/account/dashboard'">&larr; Back to My Account</router-link>
                                 </li>
                             </ul>
                         </div>

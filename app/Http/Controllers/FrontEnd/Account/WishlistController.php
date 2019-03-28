@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd\Account;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\FrontEnd\Account\Address;
+use App\Http\Models\FrontEnd\Customer;
 use Carbon\Carbon;
 use DB;
 use Auth;
@@ -18,8 +19,9 @@ class WishlistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        $customer = Customer::where('sec_user_id', Auth::user()->id)->first();
     	if(isset(Auth::user()->id)){
-            $Address = Address::where('customer_id',Auth::user()->id)->get();
+            $Address = Address::where('customer_id',$customer->customer_id)->get();
 
             $Products = DB::table('product')
                     ->select('product.*','product_description.*')
@@ -27,16 +29,16 @@ class WishlistController extends Controller
                     ->Join('customer_wishlist','customer_wishlist.product_id','=','product.product_id')
                     ->Join('product_to_store','product.product_id','=','product_to_store.product_id')
                     ->where('product_description.language_id',config_language_id)
-                    ->where('customer_wishlist.customer_id',Auth::user()->id)
+                    ->where('customer_wishlist.customer_id',$customer->customer_id)
                     // ->where('product.status',1)
-                    ->where('product_to_store.store_id',config_store_id)
+                    // ->where('product_to_store.store_id',config_store_id)
                     // ->groupBy('product_description.name')
                     // ->groupBy('customer_wishlist.product_id')
                     ->get();
 
             $data = array();
             foreach ($Products as $Product) {
-                $data[] = array('product_id'=>$Product->product_id,'name'=>$Product->name,'image'=>$Product->image,'price'=>$Product->price);
+                $data[] = array('product_id'=>$Product->product_id,'name'=>$Product->name,'image'=>config_url.$Product->image,'price'=>$Product->price);
             }
             // dd($array);
     		return response()->json(['data'=>$data,'success' => true, 'message' => 'Success', 'lang'=>Session::get('applangId')]);

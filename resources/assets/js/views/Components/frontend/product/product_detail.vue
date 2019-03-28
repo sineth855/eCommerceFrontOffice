@@ -205,6 +205,10 @@
                             <i class="glyphicon glyphicon-lock"></i> Secure online ordering
                         </h3>
 
+                        <h3 class="incaps">
+                            <i class="glyphicon glyphicon-home"></i> <a href="">Go to store</a>
+                        </h3>
+                        <div style="clear:both"></div>
                     </div>
                     <!--/.cart-actions-->
                     

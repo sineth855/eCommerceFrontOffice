@@ -72,11 +72,12 @@ class CartController extends Controller
         $data = array();
         // if(Auth::user()->id) {
         if(isset(Auth::user()->id)) {
+            $customer = Customer::where('sec_user_id', Auth::user()->id)->first();
             $query = DB::table('cart')
                             ->select('product.*','cart.quantity as cart_quantity')
                             ->join('product','product.product_id','=','cart.product_id')
                             // ->where('cart.customer_id',Auth::user()->id)
-                            ->where('cart.customer_id',Auth::user()->id)
+                            ->where('cart.customer_id', $customer->customer_id)
                             ->get();
         }else{
             $query = DB::table('cart')
@@ -85,7 +86,6 @@ class CartController extends Controller
                                 ->where('cart.session_id',$input['session_id'])
                                 ->get();
         }
-
         foreach ($query as $key => $value) {
             $value->name=ProductDescription::findOrfail($value->product_id)
                         ->where('product_id',$value->product_id)
@@ -99,7 +99,7 @@ class CartController extends Controller
                 'product_id'  => $row->product_id,
                 'image'       => config_url.$row->image,
                 'name'        => $value->name,
-                'cart_quantity'        => $row->cart_quantity,
+                'cart_quantity'      => $row->cart_quantity,
                 'alt_name'    => str_replace(' ', '-', strtolower($row->name)),
                 'price'       => $row->price,
                 'href'        => '/product/'.str_replace(' ', '-', strtolower($row->name)).'-'.$row->product_id.'-0'
@@ -114,6 +114,9 @@ class CartController extends Controller
     
     public function Checkout(Request $request)
     {
+        $request['telephone'] = '012';
+        $request['fax'] = 'fax';
+        $request['custom_field'] = 'field';
         $request['firstname']='sineth';
         $request['lastname']='sineth';
         $request['email']='simsineth855@gmail.com';
@@ -141,7 +144,7 @@ class CartController extends Controller
         $request['user_agent']=$request->server('HTTP_USER_AGENT');
         $request['date_added']=date('Y-m-d');
         $request['date_modified']=date('Y-m-d');
-        $request['total']=$this->ProductCart()['TotalPrices'];
+        $request['total']= $this->ProductCart()['TotalPrices'];
         if (isset($request['payment_country_id']) && $request['payment_country_id']) {
             $request['payment_country']=Country::find($request['payment_country_id'])->value('name');
         }
@@ -155,9 +158,7 @@ class CartController extends Controller
             $request['shipping_zone']=Zone::find($request['shipping_zone_id'])->value('name');
         }
         
-
         // return $request;
-
         $order = (new OrderModel)->getFillable();
         $order = $request->only($order);
         $orderId=OrderModel::insertGetId($order);

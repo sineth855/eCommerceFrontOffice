@@ -56,7 +56,7 @@
                             <li><router-link to="/account/dashboard"> My Account </router-link></li>
                             <li><router-link to="/account/orderlist"> Order list </router-link></li>
                             <li><router-link to="/account/wishlist"> Wishlists </router-link></li>
-                            <li><a target="_blank" href="http://35.185.191.11:8081"> Reseller Signin </a></li>
+                            <li><a target="_blank" href="http://35.185.191.11:8084"> Reseller Signin </a></li>
                             <li><router-link to="/account/register"> Reseller Register </router-link></li>
                         </ul>
                     </div>

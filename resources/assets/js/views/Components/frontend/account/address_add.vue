@@ -237,7 +237,7 @@
                             </router-link>
                         </li>
                         <li class="next pull-left">
-                            <router-link v-bind:to="'/account/addressmy'" title="Orders">
+                            <router-link v-bind:to="'/account/my_address'" title="Orders">
                                 ← Back to My Address
                             </router-link>
                         </li>

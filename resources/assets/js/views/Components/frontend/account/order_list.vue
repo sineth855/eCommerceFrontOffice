@@ -26,15 +26,14 @@
 		                    <table class="footable">
 		                        <thead>
 		                        <tr>
-		                            <th data-class="expand" data-sort-initial="true"><span
-		                                    title="table sorted by this column on load">Order ID</span></th>
-		                            <th data-hide="phone,tablet" data-sort-ignore="true">No. of items</th>
-		                            <th data-hide="phone,tablet" data-sort-ignore="true">Invoice</th>
-		                            <th data-hide="phone,tablet"><strong>Payment Method</strong></th>
-		                            <th data-hide="phone,tablet"><strong></strong></th>
+		                            <th data-class="expand" data-sort-initial="true"><span title="table sorted by this column on load">Order ID</span></th>
+		                            <th data-hide="default" data-sort-ignore="true">No. of items</th>
+		                            <th data-hide="default" data-sort-ignore="true">Invoice</th>
+		                            <th data-hide="default"><strong>Payment Method</strong></th>
 		                            <th data-hide="default"> Total</th>
-		                            <th data-hide="default" data-type="numeric"> Date</th>
-		                            <th data-hide="phone" data-type="numeric"> Status</th>
+		                            <th data-hide="default"> Date</th>
+		                            <th data-hide="default" data-type="numeric"> Status</th>
+									<th data-hide="default"><strong>Detail</strong></th>
 		                        </tr>
 		                        </thead>
 		                        <tbody>
@@ -45,14 +44,13 @@
 		                            </td>
 		                            <td><a target="_blank">-</a></td>
 		                            <td>Bank Wire</td>
-		                            <td>
-		                            	<router-link v-bind:to="'/account/order_info/'+ data.order_id" class="btn btn-primary btn-sm">
-		                            		view detail
-                                		</router-link>
-		                            </td>
 		                            <td>{{data.currency_code}} {{data.total}}</td>
 		                            <td data-value="78025368997">{{data.date_added}}</td>
-		                            <td data-value="3"><span class="label label-success">{{data.status}}</span>
+		                            <td data-value="3"><span class="label label-success">{{data.status}}</span></td>
+									<td>
+		                            	<router-link v-bind:to="'/account/order_info/'+ data.order_id" class="btn btn-primary btn-sm">
+		                            		View
+                                		</router-link>
 		                            </td>
 		                        </tr>
 		                        <!-- <tr>

@@ -19,7 +19,7 @@ class AddressController extends Controller
      */
 
     public function __construct(){
-        $this->middleware('auth:account');
+        // $this->middleware('auth:account');
     }
         
     public function index(){

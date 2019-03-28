@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd\Account;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Models\FrontEnd\Customer;
 use Carbon\Carbon;
 use DB;
 use Auth;
@@ -17,8 +18,10 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        // dd(Auth::user()->id);
+        $customer = Customer::where('sec_user_id', Auth::user()->id)->first();
     	if(isset(Auth::user()->id)){
-            $Orders = $this->getOrders((int)Auth::user()->id,config_store_id);
+            $Orders = $this->getOrders($customer->customer_id, config_store_id);
     		return response()->json(['data'=>$Orders,'success' => true, 'message' => 'Success', 'lang'=>Session::get('applangId')]);
         }else{
           	return response()->json(['success' => false, 'message' => 'Unauthorise']);
@@ -37,7 +40,7 @@ class OrderController extends Controller
                     ->Join('order_status as os','o.order_status_id','=','os.order_status_id')
                     ->where('o.customer_id',''.(int)$customer_id.'')
                     ->where('o.order_status_id','>','0')
-                    ->where('o.store_id',''.$config_store_id.'')
+                    // ->where('o.store_id',''.$config_store_id.'')
                     ->get();
 
         $data = array();

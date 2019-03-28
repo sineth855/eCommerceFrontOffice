@@ -40,12 +40,11 @@ class Controller extends BaseController
     /*
 	# query get category
     */
-	public function getCategories($parent_id = 0,$cat_type = 0) {
+	public function getCategories($parent_id = 0) {
 		$query = DB::table('category')
 				->select('category.*','category_description.name as name')
 				->leftJoin('category_description' ,'category.category_id','=' ,'category_description.category_id')
 				// ->leftJoin('category_to_store' , 'category.category_id', '=', 'category_to_store.category_id')
-				->where('category.category_type_id',$cat_type)
 				->where('category.parent_id',$parent_id)
 				// ->where('category_to_store.store_id',config_store_id)
 				->where('category.status',1)
@@ -219,11 +218,11 @@ class Controller extends BaseController
 				ORDER BY ps.priority ASC
 				, ps.price ASC LIMIT 1) AS special'))
 				->leftJoin('product_description','product.product_id','=','product_description.product_id')
-				->leftJoin('product_to_store','product.product_id','=','product_to_store.product_id')
-				->where('product_description.language_id',1)
-				->where('product.status',1)
+				// ->leftJoin('product_to_store','product.product_id','=','product_to_store.product_id')
+				->where('product_description.language_id', config_language_id)
+				->where('product.status', 1)
 				->where('product.date_available','<=',Carbon::today())
-				 ->where('product_to_store.store_id',config_store_id)
+				// ->where('product_to_store.store_id',config_store_id)
 				// ->where('product_to_store.store_id',0)
 				->groupBy('product_description.name')
 				->groupBy('product.product_id');
@@ -263,10 +262,10 @@ class Controller extends BaseController
 				->where('product.product_id',$product_id)
 				// ->where('product_to_category.category_id',$category_id)
 				// ->where('product_description.language_id',config_language_id)
-				->where('product_description.language_id',1)
-				->where('product.status',1)
+				->where('product_description.language_id', config_language_id)
+				->where('product.status', 1)
 				->where('product.date_available','<=',Carbon::today())
-				 ->where('product_to_store.store_id',config_store_id)
+				//  ->where('product_to_store.store_id',config_store_id)
 				// ->where('product_to_store.store_id',0)
 				->first();
 			return($query);

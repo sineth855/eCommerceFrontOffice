@@ -10,7 +10,7 @@
 // import AddressList from './views/Components/frontend/account/address_list.vue'
 // import AddressAdd from './views/Components/frontend/account/address_add.vue'
 // import AddressForm from './views/Components/frontend/account/address_form.vue'
-// import AddressMy from './views/Components/frontend/account/address_my.vue'
+// import MyAddress from './views/Components/frontend/account/address_my.vue'
 // import InformationUser from './views/Components/frontend/account/information_user.vue'
 // import WishList from './views/Components/frontend/account/wishlist.vue'
 
@@ -61,9 +61,14 @@ export default ({ authGuard, guestGuard }) => [
           props:true
         },
         {
-          path: 'addresslist',
-          name: 'AaddressList',
-          component: require('../views/Components/frontend/account/address_list.vue')
+          path: 'my_address',
+          name: 'MyAddress',
+          component: require('../views/Components/frontend/account/address_my.vue')
+        },
+        {
+          path: 'profile',
+          name: 'Profile',
+          component: require('../views/Components/frontend/account/information_user.vue')
         },
         {
           path: 'addressadd',
@@ -133,6 +138,6 @@ export default ({ authGuard, guestGuard }) => [
       public: true,
     },
     component: require('../views/Components/frontend/page/404error.vue')
-  }
+  },
   // { path: '*', component: require('~/pages/errors/404.vue') }
 ]

@@ -150,7 +150,7 @@
 
                         <!-- <li class="active"><a href="/"> nAME </a></li> -->
                        
-                        <li v-for="post of posts" class="dropdown megamenu-fullwidth" v-if="post['categories']">
+                        <li v-for="post of posts" class="dropdown megamenu-fullwidth">
                             <router-link data-toggle="dropdown" class="dropdown-toggle" to="/">
                             {{post.name}} 
                             <span><b class="caret"> </b> </span>
@@ -158,7 +158,7 @@
                             
                             <ul class="dropdown-menu">
                                 <li class="megamenu-content ProductDetailsList">
-                                    <template v-for="cat of post['categories']">
+                                    <template v-for="cat of post['children']">
                                     <!-- <h3 class="promo-1 no-margin hidden-xs">60 + HTML PAGES || AVAILABLE ONLY AT WRAP
                                         BOOTSTRAP </h3>
 
@@ -168,20 +168,20 @@
                                             <li class="no-border">
                                                 <p><strong> {{cat.name}} </strong></p>
                                             </li>
-                                            <li v-for="child of cat['children']">
+                                            <!--<li v-for="child of cat['children']">
                                                 <router-link v-bind:to="child.href">
                                                   {{child.name}}
                                                 </router-link>
-                                            </li>
+                                            </li>-->
 
                                         </ul>
                                     </template>
                                 </li>
                             </ul>
                         </li>
-                        <li v-else>
+                        <!--<li v-else>
                             <a href="">{{post.name}}</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </template>
 

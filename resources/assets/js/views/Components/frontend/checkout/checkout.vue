@@ -27,214 +27,465 @@
 		            <div class="row userInfo">
 		                <div class="col-xs-12 col-sm-12">
 		                    <div class="w100 clearfix">
-								<!--{{get_checkout_address | json}}
-								<input type="text" v-model="get_checkout_address['address_id']"/>-->
-		                    	<!-- tabs header -->
-		                        <ul class="orderStep orderStepLook2">
-		                        	<li v-for="(tab, i) in tabs" :class="{'active':activeTab==i}" @click="activeTab=i">
-		                        		<a>
-			                        		<i :class="tab.iconDisplay"></i> 
-			                            	<span>{{tab.name}}</span>
-		                        		</a>
-		                        	</li>
-		                        </ul>
-		                        <!-- tabs header -->
+								<ul class="orderStep orderStepLook2">
+									<li :class="{'active': activeTab == '1' }"><a href="javascript:void(0);"> <i class="fa fa-map-marker "></i> <span> address</span>
+									</a></li>
+									<li :class="{'active': activeTab == '2' }"><a href="javascript:void(0);"> <i class="fa fa fa-envelope  "></i>
+										<span> Billing </span></a></li>
+									<li :class="{'active': activeTab == '3' }"><a href="javascript:void(0);"><i class="fa fa-truck"> </i><span>Shipping</span> </a></li>
+									<li :class="{'active': activeTab == '4' }"><a href="javascript:void(0);"><i class="fa fa-money"> </i><span>Payment</span> </a></li>
+									<li :class="{'active': activeTab == '5' }"><a href="javascript:void(0);"><i class="fa fa-check-square"> </i><span>Order</span></a>
+									</li>
+								</ul>
+								<!--/.orderStep end-->
+							 </div>
+		                   <div>
+		                   <!-- Customer address -->
+							<div class="w100 clearfix" v-show='showStep1'>
+								<div class="row userInfo">
+									<div class="col-lg-12">
+										<h2 class="block-title-2"> To add a new address, please fill out the form below. </h2>
+									</div>
+									<div class="col-xs-12">
+										<p class="error" v-if="errors.length">
+											<b>Please correct the following error(s):</b>
+											<ul>
+												<li v-for="error in errors">{{ error }}</li>
+											</ul>
+										</p>
+									</div>
+									<form>
+										<div class="col-xs-12 col-sm-6">
+											<div class="form-group required">
+												<label for="InputName">First Name <sup>*</sup> </label>
+												<input required v-model="data.firstname" type="text" class="form-control" id="InputName" placeholder="First Name">
+											</div>
+											<div class="form-group required">
+												<label for="InputLastName">Last Name <sup>*</sup> </label>
+												<input required v-model="data.lastname" type="text" class="form-control" id="InputLastName"
+													placeholder="Last Name">
+											</div>
+											<div class="form-group required">
+												<label for="InputLastName">Company <sup>*</sup> </label>
+												<input required v-model="data.payment_company" type="text" class="form-control" id="InputLastName"
+													placeholder="Last Name">
+											</div>
+											<div class="form-group required">
+												<label for="InputEmail">Email <sup>*</sup></label>
+												<input required type="email" v-model="data.email" class="form-control" id="InputEmail" placeholder="Email">
+											</div>
+											<div class="form-group required">
+												<label for="InputAddress">Address <sup>*</sup> </label>
+												<input required v-model="data.payment_address_1" type="text" class="form-control" id="InputAddress"
+													placeholder="Address">
+											</div>
+											<div class="form-group">
+												<label for="InputAddress2">Address (Line 2) </label>
+												<input type="text" v-model="data.payment_address_2" class="form-control" id="InputAddress2"
+													placeholder="Address">
+											</div>
+											<div class="form-group required">
+												<label for="InputCity">City <sup>*</sup> </label>
+												<input required v-model="data.payment_city" type="text" class="form-control" id="InputCity"
+													placeholder="City">
+											</div>
+											<div class="form-group required">
+												<label for="InputState">Zone <sup>*</sup> </label>
 
-		                        <!--/.orderStep end-->
-		                    </div>
-		                    <!-- form tabs -->
-		                    <div class="w100 clearfix">
-								<div class="row userInfo" v-for="i in tabs.length" v-show="activeTab==i-1">
-									<div class="col-lg-12" >
-										<h2 class="block-title-2"> 
-											{{tabs[activeTab].description}}
-										</h2>
+												<select class="form-control" required v-model="data.payment_zone" aria-required="true" id="InputState"
+														name="InputState">
+													<option value="50">Wyoming</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<div class="form-group required">
+												<label for="InputZip">Zip / Postal Code <sup>*</sup> </label>
+												<input required v-model="data.payment_postcode" type="text" class="form-control" id="InputZip"
+													placeholder="Zip / Postal Code">
+											</div>
+											<div class="form-group required">
+												<label for="InputCountry">Country <sup>*</sup> </label>
+												<select class="form-control" required v-model="data.payment_country" aria-required="true" id="InputCountry"
+														name="InputCountry">
+													
+													<option value="21">United States</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="InputAdditionalInformation">Additional information</label>
+												<textarea rows="3" v-model="data.comment"  cols="26" name="InputAdditionalInformation"
+														class="form-control" id="InputAdditionalInformation"></textarea>
+											</div>
+											<div class="form-group required">
+												<label for="InputMobile">Mobile phone <sup>*</sup></label>
+												<input required v-model="data.telephone" type="tel" name="InputMobile" class="form-control"
+													id="InputMobile">
+											</div>
+										</div>
+									</form>
+									<div class="cartFooter w100">
+										<div class="box-footer">
+											<div class="pull-left"><router-link class="btn btn-default" to="/"> <i
+													class="fa fa-arrow-left"></i> &nbsp; Back to Shop </router-link></div>
+											<div class="pull-right"><a class="btn btn-primary btn-small" @click="shippingAddress();">Shipping address &nbsp; <i class="fa fa-arrow-circle-right"></i> </a></div>
+										</div>
 									</div>
 								</div>
-		                        <!--/row end-->
-		                    </div>
-		                    <!-- end form -->
-		                    <div>
-		                   <!-- Customer address -->
-		                    <div class="w100 clearfix" v-show='activeTab==0'>
-		                        <div class="row userInfo">
-		                        	<div v-for="input in tabs[activeTab].group" :class="input.class" >
-		                            	<div v-for="form in input.data">
-		                            		
-		                            		<div class="form-group required" v-if="form.type=='select'">
-		                                        <label :for="form.label">{{form.label}}</label>
-		                                        <select v-model="data[form.key]" class="form-control" required aria-required="true" :id="form.label" :name="form.label" @change="onchange(form.change,data[form.key])">
-		                                            <option v-for="(option,value) in selectItem[form.item]" :value="option.value">{{option.name}}</option>
-		                                        </select>
-		                                    </div>
-		                                    <div class="form-group" v-else-if="form.type=='textarea'">
-			                                    <label for="InputAdditionalInformation">{{form.label}}</label>
-			                                    <textarea rows="3" cols="26" name="InputAdditionalInformation" v-model="data[form.key]" class="form-control"
-			                                              id="other"></textarea>
-			                                </div>
-			                            	<div class="form-group required" v-else>
-		                                        <label for="InputName">{{form.label}}<sup> * </sup> </label>
-		                                        <input required type="text" v-model="data[form.key]" class="form-control" :placeholder="form.Value">
-			                            	</div>
-		                            	</div>
-		                            </div>
-		                        </div>
-		                        <!--/row end-->
-		                    </div>
+								<!--/row end-->
+
+							</div>
+
 		                    <!-- Billing address -->
-		                    <div class="w100 clearfix" v-show='activeTab==1'>
-		                        <div class="row userInfo">
-		                        	<div class="col-xs-12 col-sm-12">
-		                                <label class="checkbox-inline" for="checkboxes-0">
-		                                    <input name="checkboxes" id="checkboxes-0" v-model="data.same_as_shipping" type="checkbox">
-		                                    My delivery and billing addresses are the same.=> {{data.same_as_shipping}}</label>
-		                                <hr>
-		                            </div>
-		                        	<div v-for="input in tabs[activeTab].group" :class="input.class" >
-		                            	<div v-for="form in input.data">
-		                            		
-		                            		<div class="form-group required" v-if="form.type=='select'">
-		                                        <label :for="form.label">{{form.label}}</label>
-		                                        <select v-model="data[form.key]" class="form-control" required aria-required="true" :id="form.label" :name="form.label" @change="onchange(form.change,data[form.key])">
-		                                            <option v-for="(option,value) in selectItem[form.item]" :value="option.value">{{option.name}}</option>
-		                                        </select>
-		                                    </div>
-		                                    <div class="form-group" v-else-if="form.type=='textarea'">
-			                                    <label for="InputAdditionalInformation">{{form.label}}</label>
-			                                    <textarea rows="3" cols="26" name="InputAdditionalInformation" v-model="data[form.key]" class="form-control"
-			                                              id="other"></textarea>
-			                                </div>
-			                            	<div class="form-group required" v-else>
-		                                        <label for="InputName">{{form.label}}<sup> * </sup> </label>
-		                                        <input required type="text" v-model="data[form.key]" class="form-control" :placeholder="form.Value">
-			                            	</div>
-		                            	</div>
-		                            </div>
-		                        </div>
-		                        <!--/row end-->
-		                    </div>
+		                    <div class="w100 clearfix" v-show='showStep2'>
+								<div class="row userInfo">
+									<div class="col-lg-12">
+										<h2 class="block-title-2"> To add a billing address, please fill out the form
+											below. </h2>
+									</div>
+									<div class="col-xs-12 col-sm-12">
+										<label class="checkbox-inline" for="checkboxes-0">
+											<input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
+											My delivery and billing addresses are the same. </label>
+										<hr>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group required">
+											<label for="InputName">First Name <sup>*</sup> </label>
+											<input required v-model="data.shipping_firstname" type="text" class="form-control" id="InputName"
+												placeholder="First Name">
+										</div>
+										<div class="form-group required">
+											<label for="InputLastName">Last Name <sup>*</sup> </label>
+											<input required v-model="data.shipping_lastname" type="text" class="form-control" id="InputLastName"
+												placeholder="Last Name">
+										</div>
+										<div class="form-group required">
+											<label for="InputLastName">Shipping Company <sup>*</sup> </label>
+											<input required v-model="data.shipping_company" type="text" class="form-control" id="InputLastName"
+												placeholder="Last Name">
+										</div>
+										<div class="form-group required">
+											<label for="InputAddress">Shipping Address <sup>*</sup> </label>
+											<input required v-model="data.shipping_address_1" type="text" class="form-control" id="InputAddress"
+												placeholder="Address">
+										</div>
+										<div class="form-group">
+											<label for="InputAddress2">Shipping Address (Line 2) </label>
+											<input type="text" v-model="data.shipping_address_2" class="form-control" id="InputAddress2" placeholder="Address">
+										</div>
+										<div class="form-group required">
+											<label for="InputCity">Shippiing City <sup>*</sup> </label>
+											<input required type="text" v-model="data.shipping_city" class="form-control" id="InputCity" placeholder="City">
+										</div>
+										<div class="form-group required">
+											<label for="InputState">Shipping Zone <sup>*</sup> </label>
+											<select class="form-control" v-model="data.shipping_zone" required aria-required="true" id="InputState"
+													name="InputState">
+												<option value="">Choose</option>
+												<option value="1">Alabama</option>
+												
+											</select>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group required">
+											<label for="InputZip">Shipping Zip / Postal Code <sup>*</sup> </label>
+											<input required v-model="data.shipping_code" type="text" class="form-control" id="InputZip"
+												placeholder="Zip / Postal Code">
+										</div>
+										<div class="form-group required">
+											<label for="InputCountry">Country <sup>*</sup> </label>
+											<select class="form-control" required v-model="data.shipping_country" aria-required="true" id="InputCountry"
+													name="InputCountry">
+												
+												<option value="17">United Kingdom</option>
+												<option selected="selected" value="21">United States</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="cartFooter w100">
+										<div class="box-footer">
+
+											<div class="pull-left">
+												<a class="btn btn-default" href="javascript:void(0);" @click="showStep1 = true; showStep2 = false; activeTab = 1;"> <i class="fa fa-arrow-left"></i>
+													&nbsp; Shipping address </a></div>
+											<div class="pull-right">
+												<a @click="shippingMethod()" class="btn btn-primary btn-small "> Shipping method &nbsp; <i
+														class="fa fa-arrow-circle-right"></i> </a></div>
+										</div>
+									</div>
+
+								</div>
+								<!--/row end-->
+
+							</div>
 		                    
 		                    <!-- Shipping address -->
 		                     
-		                    <div class="w100 clearfix" v-show='activeTab==2'>
-		                        <div class="row userInfo">
-		                            <div class="col-xs-12 col-sm-12">
-		                                
-		                                        <table style="width:100%" class="table-bordered table tablelook2">
-		                                            <tbody>
-		                                            <tr>
-		                                                <td> Carrier</td>
-		                                                <td>Method</td>
-		                                                
-		                                            </tr>
-		                                            
-		                                            <tr v-for="shipping in shippingList">
-		                                                <td><label class="radio">
-		                                                    <input type="radio" v-model="data.shipping_method" name="optionsRadios" id="optionsRadios2"
-		                                                           :value="shipping.value">
-		                                                    <i class="fa fa-truck fa-2x"></i> </label></td>
-		                                                
-		                                                <td>{{shipping.label}}</td>
-		                                            </tr>
-		                                            </tbody>
-		                                        </table>
-		                                    
-
-		                                <!--/row-->
-
-		                              
-		                                <!--/ cartFooter -->
-
-		                            </div>
-		                        </div>
-		                    </div>
+		                    <div class="w100 clearfix" v-show='showStep3'>
+								<div class="row userInfo">
+									<div class="col-lg-12">
+										<h2 class="block-title-2"> Choose your delivery method </h2>
+									</div>
+									<div class="col-xs-12 col-sm-12">
+										<div class="w100 row">
+											<div class="form-group col-lg-12 col-sm-12 col-md-12 -col-xs-12">
+												<table style="width:100%" class="table-bordered table tablelook2">
+													<tbody>
+													<tr>
+														<td>Carrier</td>
+														<td>Method</td>
+														<td>Information</td>
+														<td>Price!</td>
+													</tr>
+													<tr>
+														<td><label class="radio">
+															<input type="radio" name="optionsRadios" id="optionsRadios1"
+																value="option1" checked>
+															<i class="fa  fa-plane fa-2x"></i> </label></td>
+														<td> By Road</td>
+														<td>Pick up in-store</td>
+														<td>Free!</td>
+													</tr>
+													<tr>
+														<td><label class="radio">
+															<input type="radio" name="optionsRadios" id="optionsRadios2"
+																value="option2">
+															<i class="fa fa-truck fa-2x"></i> </label></td>
+														<td>By Air</td>
+														<td>Delivery next day!</td>
+														<td>Free!</td>
+													</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="cartFooter w100">
+											<div class="box-footer">
+												<div class="pull-left"><a href="javascript:void(0)" class="btn btn-default" @click="showStep2 = true; showStep3 = false; activeTab = 2;"> <i
+														class="fa fa-arrow-left"></i> &nbsp; Shipping address </a></div>
+												<div class="pull-right"><a @click="paymentMethod();" href="javascript:void(0)"
+																		class="btn btn-primary btn-small "> Payment Method
+													&nbsp; <i class="fa fa-arrow-circle-right"></i> </a></div>
+											</div>
+										</div>
+										<!--/ cartFooter -->
+										<!--/row-->
+									</div>
+								</div>
+							</div>
 		                    <!-- Payment -->
-		                     <div class="w100 clearfix" v-show='activeTab==3'>
-		                        <div class="row userInfo">
-		                            <div class="col-lg-12">
-		                                <p>Please select the preferred shipping method to use on this order.</p>
-		                                <hr>
-		                            </div>
-		                            <div class="col-xs-12 col-sm-12">
-		                                <div class="paymentBox">
-		                                    <div class="panel-group paymentMethod" id="accordion">
-		                                        <div class="panel panel-default">
-		                                            <div class="panel-heading panel-heading-custom">
-		                                                <h4 class="panel-title"><a class="cashOnDelivery" data-toggle="collapse"
-		                                                                           data-parent="#accordion" href="#collapseOne">
-		                                                    <span class="numberCircuil">Option 1</span> <strong> Cash on
-		                                                    Delivery</strong> </a></h4>
-		                                            </div>
-		                                            <div id="collapseOne" class="panel-collapse collapse in">
-		                                                <div class="panel-body">
-		                                                    <p>All transactions are secure and encrypted, and we neverstor To
-		                                                        learn more, please view our privacy policy.</p>
-		                                                    <br>
-		                                                    <label class="radio-inline" for="radios-4">
-		                                                        <input name="radios" v-model="data.payment_method" id="radios-4" value="1" type="radio">
-		                                                        Cash On Delivery </label>
+		                    <div class="w100 clearfix" v-show='showStep4'>
+								<div class="row userInfo">
+									<div class="col-lg-12">
+										<h2 class="block-title-2"> Payment method </h2>
 
-		                                                    <div class="form-group">
-		                                                        <label for="CommentsOrder">Add Comments About Your Order</label>
-		                                                        <textarea v-model="data.comment" id="CommentsOrder" class="form-control"
-		                                                                  name="CommentsOrder" cols="26" rows="3"></textarea>
-		                                                    </div>
-		                                                    <div class="form-group clearfix">
-		                                                        <label class="checkbox-inline" for="checkboxes-1">
-		                                                            <input name="checkboxes" id="checkboxes-1" value="1"
-		                                                                   type="checkbox">
-		                                                            I have read and agree to the <a
-		                                                                href="terms-conditions.html">Terms & Conditions</a>
-		                                                        </label>
-		                                                    </div>
-		                                                    
-		                                                </div>
-		                                            </div>
-		                                        </div>
-		                                       
-		                                    </div>
-		                                </div>
+										<p>Please select the preferred shipping method to use on this order.</p>
+										<hr>
+									</div>
+									<div class="col-xs-12 col-sm-12">
+										<div class="paymentBox">
+											<div class="panel-group paymentMethod" id="accordion">
+												<div class="panel panel-default">
+													<div class="panel-heading panel-heading-custom">
+														<h4 class="panel-title"><a class="cashOnDelivery" data-toggle="collapse"
+																				data-parent="#accordion" href="#collapseOne">
+															<span class="numberCircuil">Option 1</span> <strong> Cash on
+															Delivery</strong> </a></h4>
+													</div>
+													<div id="collapseOne" class="panel-collapse collapse in">
+														<div class="panel-body">
+															<p>All transactions are secure and encrypted, and we neverstor To
+																learn more, please view our privacy policy.</p>
+															<br>
+															<label class="radio-inline" for="radios-4">
+																<input name="radios" check="checked" id="radios-4" value="4" type="radio">
+																Cash On Delivery </label>
 
-		                                <!--/row-->
+															<div class="form-group">
+																<label for="CommentsOrder">Add Comments About Your Order</label>
+																<textarea id="CommentsOrder" class="form-control"
+																		name="CommentsOrder" cols="26" rows="3"></textarea>
+															</div>
+															<div class="form-group clearfix">
+																<label class="checkbox-inline" for="checkboxes-1">
+																	<input name="checkboxes" id="checkboxes-1" value="1"
+																		type="checkbox">
+																	I have read and agree to the <a
+																		href="">Terms & Conditions</a>
+																</label>
+															</div>
+															<div class="pull-right"><a href="javascript:void(0);" @click="processOrder()" class="btn btn-primary btn-small "> Order
+																&nbsp; <i class="fa fa-arrow-circle-right"></i> </a></div>
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default" style="display:none;">
+													<div class="panel-heading panel-heading-custom">
+														<h4 class="panel-title"><a data-toggle="collapse"
+																				data-parent="#accordion" href="#collapseTwo">
+															<span class="numberCircuil">Option 2</span><strong> PayPal</strong>
+														</a></h4>
+													</div>
+													<div id="collapseTwo" class="panel-collapse collapse">
+														<div class="panel-body">
+															<p>All transactions are secure and encrypted, and we neverstor To
+																learn more, please view our privacy policy.</p>
+															<br>
+															<label class="radio-inline" for="radios-3">
+																<input name="radios" id="radios-3" value="4" type="radio">
+																<!--<img src="" height="18" alt="paypal">--> Checkout with Paypal 
+															</label>
 
-		                            </div>
-		                        </div>
-		                    </div>
-		                   
+															<div class="form-group">
+																<label for="CommentsOrder2">Add Comments About Your
+																	Order</label>
+																<textarea id="CommentsOrder2" class="form-control"
+																		name="CommentsOrder2" cols="26" rows="3"></textarea>
+															</div>
+															<div class="form-group clearfix">
+																<label class="checkbox-inline" for="checkboxes-0">
+																	<input name="checkboxes" id="checkboxes-0" value="1" type="checkbox"/>
+																	I have read and agree to the <a
+																		href="">Terms & Conditions</a>
+																</label>
+															</div>
+															<div class="pull-right"><a href="" class="btn btn-primary btn-small "> Order
+																&nbsp; <i class="fa fa-arrow-circle-right"></i> </a></div>
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default" style="display:none;">
+													<div class="panel-heading panel-heading-custom">
+														<h4 class="panel-title"><a class="masterCard" data-toggle="collapse"
+																				data-parent="#accordion"
+																				href="#collapseThree"> <span
+																class="numberCircuil">Option 3</span> <strong>
+															MasterCard</strong> </a></h4>
+													</div>
+													<div id="collapseThree" class="panel-collapse collapse">
+														<div class="panel-body">
+															<p>All transactions are secure and encrypted, and we neverstor To
+																learn more, please view our privacy policy.</p>
+															<br>
+
+															<div class="panel open">
+																<div class="creditCard">
+																	<div class="cartBottomInnerRight paymentCard">
+																	</div>
+																	<span>Supported</span> <span>Credit Cards</span>
+
+																	<div class="paymentInput">
+																		<label for="CardNumber">Credit Card Number *</label>
+																		<br>
+																		<input id="CardNumber" type="text" name="Number">
+																	</div>
+																	<!--paymentInput-->
+																	<div class="paymentInput">
+																		<label for="CardNumber2">Name on Credit Card *</label>
+																		<br>
+																		<input type="text" name="CardNumber2" id="CardNumber2">
+																	</div>
+																	<!--paymentInput-->
+																	<div class="paymentInput">
+																		<div class="form-group">
+																			<label>Expiration date *</label>
+																			<br>
+
+																			<div class="col-lg-4 col-md-4 col-sm-4 no-margin-left no-padding">
+																				<select class="form-control" required
+																						aria-required="true"
+																						name="expire">
+																					<option value="">Month</option>
+																				</select>
+																			</div>
+																			<div class="col-lg-4 col-md-4 col-sm-4">
+																				<select class="form-control" required
+																						aria-required="true"
+																						name="year">
+																					<option value="">Year</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<!--paymentInput-->
+
+																	<div style="clear:both"></div>
+																	<div class="paymentInput clearfix">
+																		<label for="VerificationCode">Verification Code
+																			*</label>
+																		<br>
+																		<input type="text" id="VerificationCode"
+																			name="VerificationCode" style="width:90px;">
+																		<br>
+																	</div>
+																	<!--paymentInput-->
+
+																	<div>
+																		<input type="checkbox" name="saveInfo" id="saveInfoid">
+																		<label for="saveInfoid">&nbsp;Save my Card
+																			information</label>
+																	</div>
+																</div>
+																<!--creditCard-->
+
+																<div class="pull-right"><a href=""
+																						class="btn btn-primary btn-small">
+																	Order &nbsp; <i class="fa fa-arrow-circle-right"></i> </a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="cartFooter w100">
+											<div class="box-footer">
+												<div class="pull-left"><a href="javascript:void(0)" class="btn btn-default" @click="showStep3 = true; showStep4 = false; activeTab = 3;"> <i class="fa fa-arrow-left"></i> &nbsp; Billing address </a></div>
+											</div>
+										</div>
+										<!--/row-->
+
+									</div>
+								</div>
+							</div>
 		                    <!--/row end-->
 		                    <!-- Order -->
-		                     <div class="w100 clearfix" v-show='activeTab==4'>
+		                     <div class="w100 clearfix" v-show='showStep5'>
 		                        <div class="row userInfo">
 		                            <div class="col-xs-12 col-sm-12">
 		                                <div class="cartContent w100 checkoutReview ">
 		                                    <table class="cartTable table-responsive" style="width:100%">
 		                                        <tbody>
-		                                        <tr class="CartProduct cartTableHeader">
-					                                <td style="width:15%"> Product</td>
-					                                <td style="width:40%">Details</td>
-					                                <td style="width:10%">QNT</td>
-					                                <td style="width:15%">Total</td>
-					                            </tr>
+													<tr class="CartProduct cartTableHeader">
+														<td style="width:15%">Product</td>
+														<td style="width:40%">Details</td>
+														<td style="width:10%">QNT</td>
+														<td style="width:15%">Total</td>
+													</tr>
 
-					                            <tr v-for="product in CartProduct.products.data" class="CartProduct" v-if="CartProduct.products.data.length > 0">
-					                                <td class="CartProductThumb">
-					                                    <div><router-link v-bind:to="'/product/product_detail/'+ product.product_id+'/0'"><img :src="product.image" alt="img"></router-link>
-					                                    </div>
-					                                </td>
-					                                <td>
-					                                    <div class="CartDescription">
-					                                        <h4><router-link v-bind:to="'/product/product_detail/'+ product.product_id+'/0'">{{product.name}}</router-link></h4>
-					                                        <span class="size">12 x 1.5 L</span>
+													<tr v-for="product in CartProduct.products.data" class="CartProduct" v-if="CartProduct.products.data.length > 0">
+														<td class="CartProductThumb">
+															<div><router-link v-bind:to="'/product/product_detail/'+ product.product_id+'/0'"><img :src="product.image" alt="img"></router-link>
+															</div>
+														</td>
+														<td>
+															<div class="CartDescription">
+																<h4><router-link v-bind:to="'/product/product_detail/'+ product.product_id+'/0'">{{product.name}}</router-link></h4>
+																<span class="size">12 x 1.5 L</span>
 
-					                                        <div class="price"><span>$ {{product.price*1}}</span></div>
-					                                    </div>
-					                                </td>
-					                                <td class="price">{{product.cart_quantity}}</td>
-					                                <td class="price">$ {{product.price * product.cart_quantity}}</td>
-					                            </tr>
-					                            <tr v-if="!CartProduct.products.data">
-					                            	<td colspan="6" align="center">Your shopping cart is empty!</td>
-					                            </tr>
+																<div class="price"><span>$ {{product.price*1}}</span></div>
+															</div>
+														</td>
+														<td class="price">{{product.cart_quantity}}</td>
+														<td class="price">$ {{product.price * product.cart_quantity}}</td>
+													</tr>
+													<tr v-if="!CartProduct.products.data">
+														<td colspan="6" align="center">Your shopping cart is empty!</td>
+													</tr>
 		                                        </tbody>
 		                                    </table>
 		                                </div>
@@ -270,7 +521,18 @@
 		                                </div>
 		                                <!--/costDetails-->
 
-
+										<div class="cartFooter w100">
+											<div class="box-footer">
+												<div class="pull-left"><a href="javascript:void(0)" class="btn btn-default" @click="showStep4 = true; showStep5 = false; activeTab = 4;">
+													<i class="fa fa-arrow-left"></i> &nbsp; Payment method </a>
+												</div>
+												<div class="pull-right">
+													<a href="javascript:void(0);" @click="submit()" class="btn btn-primary btn-small ">
+														Confirm Order &nbsp; <i class="fa fa-check"></i>
+													</a>
+												</div>
+											</div>
+										</div>
 		                                <!--/row-->
 
 
@@ -279,39 +541,6 @@
 		                    </div>
 		                    
 		                    <!--/row end-->
-		                    </div>
-		                    <div class="cartFooter w100">
-		                        <div class="box-footer">
-
-		                            <div class="pull-left">
-		                                <a class="btn btn-default" @click="activeTab=activeTab-1">
-		                                	<span v-if="activeTab - 1 < 0">
-				                            	<router-link :to="{ path: '/'}" replace>
-				                                	<i class="fa fa-arrow-left"></i>
-					                                &nbsp; Back to Shop 
-				                            	</router-link>	
-		                                	</span>
-		                                	<span v-else>
-		                                		<i class="fa fa-arrow-left"></i>
-			                                    &nbsp; {{tabs[activeTab-1].button}}
-		                                	</span>
-										</a>
-		                            </div>
-		                            <div class="pull-right">
-										<span v-if="activeTab + 1 > tabs.length-1">
-											<a class="btn btn-primary btn-small" @click="Submit()">
-												&nbsp; Confirm Order
-												<i class="fa fa-arrow-circle-right"></i> 
-											</a>
-										</span>
-										<span v-else>
-											<a class="btn btn-primary btn-small" @click="activeTab=activeTab+1">
-												&nbsp; {{tabs[activeTab+1].button}}
-												<i class="fa fa-arrow-circle-right"></i> 
-											</a>
-										</span>
-		                            </div>
-		                        </div>
 		                    </div>
 
 		                </div>
@@ -363,6 +592,16 @@
 	</div>
 </template>
 
+<style>
+	.error{
+		padding: 10px;
+	}
+	p.error ul li{
+		font-weight: bold;
+		color: #f00;
+	}
+</style>
+
 <script type="text/javascript">
 import axios from 'axios'
 import Flash from '../../../../helper/flash'
@@ -373,170 +612,83 @@ import CartAction from '../../../../helper/cart'
 export default {
     data() {
         return {
-             	CartProduct: CartAction.data,
-             	shippingList:{},
-				zoneList:{},
-             	activeTab: 0,
-             	get_checkout_address:[],
-             	selectItem:{
-             		country:{},
-             		shipping_zone:{},
-             		payment_zone:{},
-             	},
-             	data:{
-     //         		firstname:'',
-					// lastname:'',
-					// email:'',
-					// telephone:'',
-					// fax:'',
-					// custom_field:'',
-
-
-					shipping_firstname:'',
-					shipping_lastname:'',
-					shipping_company:'',
-					shipping_email:'',
-					shipping_telephone:'',
-					shipping_address_1:'',
-					shipping_address_2:'',
-					shipping_country:'',
-					shipping_city:'',
-					shipping_zone:'',
-					shipping_postcode:'',
-					shipping_custom_field:'',
-					shipping_address_format:'',
-					shipping_country_id:'',
-					shipping_zone_id:'',
-					shipping_method:'',
-					shipping_code:'',
-
-					same_as_shipping:true,
-					payment_firstname:'',
-					payment_lastname:'',
-					payment_company:'',
-					payment_email:'',
-					payment_telephone:'',
-					payment_address_1:'',
-					payment_address_2:'',
-					payment_country:'',
-					payment_city:'',
-					payment_zone:'',
-					payment_postcode:'',
-					payment_custom_field:'',
-					payment_address_format:'',
-					payment_country_id:'',
-					payment_zone_id:'',
-					payment_method:'',
-					payment_code:'',
-					comment:'',
-
-
-					total:'',
-					
-
-
-					affiliate_id:'',
-					commission:'',
-					marketing_id:'',
-					tracking:'',
-					currency_id:'',
-					currency_code:'',
-					currency_value:'',
-					order_status_id:'',
-					ip:'',
-					forwarded_ip:'',
-					user_agent:'',
-					language_id:'',
-					accept_language:'',
-					
-             	},
-             	tabs:[{
-					name:'ADDRESS', 
-					description:'TO ADD A NEW ADDRESS, PLEASE FILL OUT THE FORM BELOW.',
-					button:'Customer address',
-					class:'',
-					iconDisplay:'fa fa-map-marker',
-					group:[{
-							class:'col-xs-12 col-sm-6',
-							data:[
-								{key:'payment_firstname',type:'text',label:'First Name',Value:'First Name'},
-								{key:'payment_lastname',type:'text',label:'Last Name',Value:'Last Name'},
-								{key:'payment_company',type:'text',label:'Company',Value:'Company'},
-								{key:'payment_email',type:'text',label:'Mobile phone',Value:'Mobile phone'},
-								{key:'payment_telephone',type:'text',label:'Email',Value:'Email '},
-								{key:'payment_address_1',type:'text',label:'Address',Value:'Address'},
-								{key:'payment_address_2',type:'text',label:'Address (Line 2)',Value:'Address'},
-							]
-						},
-						{
-							class:'col-xs-12 col-sm-6',
-
-							data:[
-								{key:'payment_country_id',type:'select',label:'Country',value:'Select Country',item:'country',change:'payment_zone'},
-								{key:'payment_city',type:'text',label:'City',value:'City'},
-								{key:'payment_zone_id',type:'select',label:'State',value:'Select State',item:'payment_zone'},
-								{key:'payment_postcode',type:'text',label:'Zip / Postal Code',Value:'Zip / Postal Code'},
-								{key:'payment_custom_field',type:'textarea',label:'Additional information',Value:'Additional information'},
-								{key:'payment_address_format',type:'text',label:'Please assign an address title for future reference.',Value:'My address'},
-							],
-						}
-					],
-				},
-				{
-					name:'BILLING', 
-					description:'To add a billing address, please fill out the form below.',
-					button:'CONTINUE',
-					class:'',
-					iconDisplay:'fa fa-envelope',
-					group:[{
-							class:'col-xs-12 col-sm-6',
-							data:[
-								{key:'shipping_firstname',type:'text',label:'First Name',Value:'First Name'},
-								{key:'shipping_lastname',type:'text',label:'Last Name',Value:'Last Name'},
-								{key:'shipping_company',type:'text',label:'Company',Value:'Company'},
-								{key:'shipping_email',type:'text',label:'Mobile phone',Value:'Mobile phone'},
-								{key:'shipping_telephone',type:'text',label:'Email',Value:'Email '},
-								{key:'shipping_address_1',type:'text',label:'Address',Value:'Address'},
-								{key:'shipping_address_2',type:'text',label:'Address (Line 2)',Value:'Address'},
-							]
-						},
-						{
-							class:'col-xs-12 col-sm-6',
-							data:[
-								{key:'shipping_country',type:'select',label:'Country',value:'Select Country',item:'country',change:'shipping_zone'},
-								{key:'shipping_city',type:'text',label:'City',value:'City'},
-								{key:'shipping_zone',type:'select',label:'State',value:'Select State',item:'shipping_zone'},
-								{key:'shipping_postcode',type:'text',label:'Zip / Postal Code',Value:'Zip / Postal Code'},
-								{key:'shipping_custom_field',type:'textarea',label:'Additional information',Value:'Additional information'},
-								{key:'shipping_address_format',type:'text',label:'Please assign an address title for future reference.',Value:'My address'},
-							],
-						}
-					],
-				},
-				{
-					name:'SHIPPING', 
-					description:'Choose your delivery method',
-					button:'Back to Billing',
-					class:'',
-					iconDisplay:'fa fa-truck',
-					
-				},
-				{
-					name:'PAYMENT', 
-					description:'Payment method',
-					button:'CONTINUE',
-					iconDisplay:'fa fa-money',
-				},
-				{
-					name:'CONFIRM ORDER', 
-					description:'Review Order',
-					button:'Order',
-					class:'',
-					iconDisplay:'fa fa-check-square',
-				},
-			],
-				
-        }
+			CartProduct: CartAction.data,
+			shippingList:{},
+			zoneList:{},
+			activeTab: 1,
+			showStep1: true,
+			showStep2: false,
+			showStep3: false,
+			showStep4: false,
+			showStep5: false,
+			customer_info: {},
+			get_checkout_address:[],
+			country:[],
+			selectItem:{
+				country:{},
+				shipping_zone:{},
+				payment_zone:{},
+			},
+			errors: [],
+			data:{
+				firstname:'',
+				lastname:'',
+				email:'',
+				telephone:'',
+				fax:'',
+				custom_field:'',
+				shipping_firstname:'',
+				shipping_lastname:'',
+				shipping_company:'',
+				shipping_email:'',
+				shipping_telephone:'',
+				shipping_address_1:'',
+				shipping_address_2:'',
+				shipping_country:'',
+				shipping_city:'',
+				shipping_zone:'',
+				shipping_postcode:'',
+				shipping_custom_field:'',
+				shipping_address_format:'',
+				shipping_country_id:'',
+				shipping_zone_id:'',
+				shipping_method:'',
+				shipping_code:'',
+				same_as_shipping:true,
+				payment_firstname:'',
+				payment_lastname:'',
+				payment_company:'',
+				payment_email:'',
+				payment_telephone:'',
+				payment_address_1:'',
+				payment_address_2:'',
+				payment_country:'',
+				payment_city:'',
+				payment_zone:'',
+				payment_postcode:'',
+				payment_custom_field:'',
+				payment_address_format:'',
+				payment_country_id:'',
+				payment_zone_id:'',
+				payment_method:'',
+				payment_code:'',
+				comment:'',
+				total:'',
+				affiliate_id:'',
+				commission:'',
+				marketing_id:'',
+				tracking:'',
+				currency_id:'',
+				currency_code:'',
+				currency_value:'',
+				order_status_id:'',
+				ip:'',
+				forwarded_ip:'',
+				user_agent:'',
+				language_id:'',
+				accept_language:'',
+			}	
+		}
     },
     components:{
 
@@ -554,9 +706,80 @@ export default {
        
     },
     created() {
-    	this.getCheckoutAddress()
+    	// this.getCheckoutAddress()
+		this.CustomerInfo();
     },
     methods: {
+		CustomerInfo() {
+            axios.get(`/api/customer_info`)
+	        .then(response => {
+				// console.log('data=>',response['data']['data']);
+	            this.customer_info = response['data']['data'];
+				this.data.firstname = this.customer_info.firstname;
+				this.data.lastname = this.customer_info.lastname;
+				this.data.email = this.customer_info.email;
+				this.data.telephone = this.customer_info.telephone;
+				this.data.payment_address_1 = this.customer_info.address_1;
+				this.data.payment_address_2 = this.customer_info.address_2;
+				this.data.payment_city = this.customer_info.payment_city;
+				this.data.payment_zone = this.customer_info.payment_zone;
+				this.data.payment_postcode = this.customer_info.postcode;
+				this.data.payment_country = this.customer_info.payment_country;
+				
+				this.data.shipping_firstname = this.customer_info.firstname;
+				this.data.shipping_lastname = this.customer_info.lastname;
+				this.data.shipping_company = this.customer_info.company;
+				this.data.shipping_address_1 = this.customer_info.address_1;
+				this.data.shipping_address_2 = this.customer_info.address_2;
+				this.data.shipping_city = this.customer_info.payment_city;
+				this.data.shipping_zone = this.customer_info.payment_zone;
+				this.data.shipping_code = this.customer_info.postcode;
+				this.data.shipping_country = this.customer_info.payment_country;
+
+	            this.isActive = !this.isActive;
+	        })
+	        .catch(e => {
+	          this.errors.push(e)
+	        })
+        },
+		shippingAddress(){
+			this.errors = [];
+			window.scrollTo(100,0)
+			if (!this.data.firstname) {
+				this.errors.push("First Name required.");
+			}
+			if (!this.data.email) {
+				this.errors.push('Email required.');
+			} else if (!this.validEmail(this.data.email)) {
+				this.errors.push('Valid email required.');
+			}
+
+			if (!this.errors.length) {
+				this.showStep1= false; 
+				this.showStep2 = true;
+				this.activeTab = 2;
+				return true;
+			}
+		},
+		shippingMethod(){
+			this.showStep2 = false;
+			this.showStep3 = true;
+			this.activeTab = 3;
+		},
+		paymentMethod(){
+			this.showStep3 = false;
+			this.showStep4 = true;
+			this.activeTab = 4;
+		},
+		processOrder(){
+			this.showStep4 = false;
+			this.showStep5 = true;
+			this.activeTab = 5;
+		},
+		validEmail: function (email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		},
     	getCheckoutAddress() {
             axios.get(`/api/get_checkout_address`)
 	        .then(response => {
@@ -567,9 +790,25 @@ export default {
 	          this.errors.push(e)
 	        })
         },
-    	Submit() {
-	      axios.post('/checkout',this.data)
-			 .catch(function (error) { console.log(error); });
+		getCountry() {
+            axios.get(`/api/country`)
+	        .then(response => {
+	            this.country = response['data']
+	            this.isActive = !this.isActive
+	        })
+	        .catch(e => {
+	          this.errors.push(e)
+	        })
+        },
+    	submit() {
+			axios.get(`/api/checkout`)
+				.then(response => {
+				Flash.setSuccess('Congratulations! Your order has been procceed.')
+				this.$router.push('/account/orderlist')
+			})
+			.catch(e => {
+				this.errors.push(e)
+			})
 	    },
 	    onchange(item,id){
 	    	if (item) {

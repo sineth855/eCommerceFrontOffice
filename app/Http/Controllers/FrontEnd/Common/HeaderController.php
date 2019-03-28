@@ -32,11 +32,11 @@ class HeaderController extends Controller
         //Menu
         // $this->load->model('catalog/category');
         // $this->load->model('catalog/product');
-        $cateTypeArr = array();
-        $category_type = $this->getTypeCategory();
-        foreach ($category_type as $ctype) {
+        // $cateTypeArr = array();
+        // $category_type = $this->getTypeCategory();
+        // foreach ($category_type as $ctype) {
             $cateArr = array();
-            $categories = $this->getCategories(0,$ctype->category_type_id);
+            $categories = $this->getCategories(0);
             foreach ($categories as $category) {
                 if ($category->top) {
                     // Level 2
@@ -50,7 +50,7 @@ class HeaderController extends Controller
 
                         $children_data[] = array(
                             'name'  => $child->name,
-                            'href'  => '/'.common::strReplace($ctype->name).'/'.common::strReplace($category->name).'/'.common::strReplace($child->name).'-'.$child->category_id
+                            'href'  => '/'.common::strReplace($category->name).'/'.common::strReplace($child->name).'-'.$child->category_id
                             // 'path=' . $category->category_id . '_' . $child->category_id
                         );
                     }
@@ -66,13 +66,13 @@ class HeaderController extends Controller
                 }
             }
 
-            $cateTypeArr[] = array(
-                'name' => $ctype->name,
-                'categories' => $cateArr
-            );
-        }
+            // $cateTypeArr[] = array(
+            //     'name' => $ctype->name,
+            //     'categories' => $cateArr
+            // );
+        // }
         
-        $data = array('data'=>$cateTypeArr,'success'=>true, 'lang'=>Session::get('applangId'));
+        $data = array('data'=>$cateArr,'success'=>true, 'lang'=>Session::get('applangId'));
         return response()->json($data);
     }
 

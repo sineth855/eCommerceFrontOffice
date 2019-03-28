@@ -37,31 +37,35 @@
                                         <ul>
                                             <li>
                                                 <span class="address-name"> 
-                                                    <strong>Tanim Ahmed</strong>
                                                     <strong>{{data.firstname}} {{data.lastname}}</strong>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="address-company"> 
-                                                    TanimDesign & Development 
                                                     {{data.company}} 
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="address-line1"> 
-                                                    Gulshan 2 , Road 50, House FO12EO 
                                                     {{data.address1}} 
                                                 </span>
                                             </li>
                                             <li>
-                                                <span class="address-line2"> 
-                                                    Dhaka, Bangladesh 
+                                                <span class="address-line2">
                                                     {{data.address2}} 
                                                 </span>
                                             </li>
 
                                         </ul>
-                                    </div>  
+                                    </div>
+                                    <div class="panel-footer panel-footer-address">
+                                        <a href="" class="btn btn-sm btn-success"> 
+                                            <i class="fa fa-edit"> </i> Edit 
+                                        </a> 
+                                        <a class="btn btn-sm btn-danger"> 
+                                            <i class="fa fa-minus-circle"></i> Delete 
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div> 

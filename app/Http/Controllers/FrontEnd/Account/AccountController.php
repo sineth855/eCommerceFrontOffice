@@ -33,8 +33,9 @@
             //dd($CustomerInfo);
             $AddressInfo = Address::where('address_id',$CustomerInfo->address_id)->first();
             $data = array(
-                'firstname' => $AddressInfo->firstname,
-                'lastname' => $AddressInfo->lastname,
+                'customer_id' => $CustomerInfo->customer_id,
+                'firstname' => $CustomerInfo->firstname,
+                'lastname' => $CustomerInfo->lastname,
                 'email' => $CustomerInfo->email,
                 'telephone' => $CustomerInfo->telephone,
                 'fax' => $CustomerInfo->fax,
@@ -47,6 +48,28 @@
                 'zone_id'=>$AddressInfo->zone_id,
             );
             return response()->json(['data'=>$data,'success' => true, 'message' => 'Success', 'lang'=>Session::get('applangId')]);
+        }
+        
+        public function show($id){
+
+        }
+
+        public function edit($id){
+
+        }
+
+        public function update(Request $request, $id){
+            $data = $request->all();
+            $customer = Customer::where('customer_id',$id);
+            $customer->update([
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'email' => $data['email'],
+                'telephone' => $data['telephone'],
+                'fax' => $data['fax'],          
+                'code' => $data['code']
+            ]);
+            return response()->json(['success' => true, 'message' => 'Data has been updated.']);
         }
 
         public function index(){

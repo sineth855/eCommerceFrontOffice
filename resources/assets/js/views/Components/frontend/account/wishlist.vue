@@ -30,8 +30,7 @@
 			                            <td style="width:40%">
 			                                <div class="CartDescription">
 			                                    <h4><a href="">{{data.name}}</a></h4>
-			                                    <span class="size">12 x 1.5 L</span>
-
+			                                    <!--<span class="size">12 x 1.5 L</span>-->
 			                                    <div class="price"><span>${{data.price}}</span></div>
 			                                </div>
 			                            </td>

@@ -18,17 +18,17 @@
         Route::get('/user', function (Request $request) {
             return $request->user();
         });
-
+        Route::post('/checkout','FrontEnd\Product\CartController@Checkout');
+        Route::get('get_checkout_address', 'FrontEnd\Account\AddressController@getCheckoutAddress');
+        Route::resource('customer', 'FrontEnd\Account\AccountController');
+        Route::get('customer_info', 'FrontEnd\Account\AccountController@getCustomer');
+        Route::get('wishlist', 'FrontEnd\Account\WishlistController@index');
+        Route::get('address', 'FrontEnd\Account\AddressController@index');
         Route::patch('settings/profile', 'Settings\UpdateProfile');
         Route::patch('settings/password', 'Settings\UpdatePassword');
     });
 
     Route::group(['middleware' => ['SettingConfig']], function(){
-        // customer
-        Route::get('address', 'FrontEnd\Account\AddressController@index');
-        Route::get('get_checkout_address', 'FrontEnd\Account\AddressController@getCheckoutAddress');
-        Route::get('customer_info', 'FrontEnd\Account\AccountController@getCustomer');
-        Route::get('wishlist', 'FrontEnd\Account\WishlistController@index');
         // Front End API
         Route::get('getTest', 'FrontEnd\TestController@getTest');
         Route::get('show/{id}', 'FrontEnd\TestController@getShow');
@@ -51,6 +51,7 @@
         Route::get('getShipping/{id?}', 'Backend\commons\CommonsController@getShipping');
         Route::get('get_product/{num}', 'FrontEnd\Product\ProductController@GetProduct');
         Route::get('footer', 'FrontEnd\Common\FooterController@getFooter');
+        Route::resource('country', 'FrontEnd\Country\CountryController');
         //Information
         Route::get('information/{id}', 'FrontEnd\Information\InformationController@index');
     });
